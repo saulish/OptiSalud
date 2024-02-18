@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1053257691964",
+    "project_id": "prueba-4eea4",
+    "storage_bucket": "prueba-4eea4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053257691964:android:d231357bdd8455033d2439",
+        "android_client_info": {
+          "package_name": "com.example.optisalud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaw3ikWhFBKcfZL0rHXrgE8RbTw0T9aPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

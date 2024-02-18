@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/registro"
+        android:layout_width="300dp"
+
+        android:layout_height="80dp"
+        android:layout_marginBottom="300dp"
+        android:clickable="false"
+        android:fadeScrollbars="false"
+        android:fontFamily="@font/comfortaa_light"
+        android:text="@string/registro"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.232"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.18" />
+
+    <Button
+        android:id="@+id/enviar_crear"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#000000"
+        android:fontFamily="@font/comfortaa_light"
+        android:onClick="crear_entrar_menu"
+        android:text="@string/iniciar_sesi_n"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.777"
+        />
+
+    <EditText
+        android:id="@+id/curp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:capitalize="sentences"
+        android:ems="10"
+        android:fontFamily="@font/comfortaa_light"
+        android:hint="@string/curp"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/enviar_crear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registro"
+        app:layout_constraintVertical_bias="0.357" />
+
+    <EditText
+        android:id="@+id/nss"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:fontFamily="@font/comfortaa_light"
+        android:hint="@string/numero_de_seguro_social"
+        android:inputType="text"
+        android:textColorHint="#757575"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/curp"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <EditText
+        android:id="@+id/nombre"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:capitalize="sentences"
+        android:ems="10"
+        android:fontFamily="@font/comfortaa_light"
+        android:hint="@string/nombre"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/curp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.91" />
+
+    <TextView
+        android:id="@+id/Text_msj"
+        android:layout_width="360dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/comfortaa"
+        android:textColor="#3F51B5"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.232" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">OptiSalud</string>
+    <string name="registro">Registro</string>
+    <string name="curp">CURP</string>
+    <string name="iniciar_sesi_n">INICIAR SESIÓN</string>
+    <string name="nombre">Nombre</string>
+    <string name="numero_de_seguro_social">Numero de Seguro Social</string>
+</resources>
