@@ -27,6 +27,7 @@ public class iniciar_activity extends AppCompatActivity {
 
         super.onCreate(estadoInstancia);
         setContentView(R.layout.activity_iniciar);
+
         enviar=findViewById(R.id.enviar_inicio);
 
         msj = findViewById(R.id.Texto_msj);
@@ -35,6 +36,7 @@ public class iniciar_activity extends AppCompatActivity {
 
     }
     private boolean verificar_cuenta(String nss, String Curp){
+
         boolean verifcado;
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("usuarios");
         Query query = databaseReference.orderByKey().equalTo(nss);
