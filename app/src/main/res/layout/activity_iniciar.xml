@@ -2,15 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:forceDarkAllowed="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white_background">
+
 
     <TextView
         android:id="@+id/titulo_iniciar"
         android:layout_width="342dp"
         android:layout_height="70dp"
         android:fontFamily="@font/comfortaa_light"
-        android:shadowColor="#070707"
+        android:shadowColor="@color/black"
         android:text="Iniciar sesión"
         android:textColorHint="#FFFFFF"
         android:textSize="48sp"
@@ -32,7 +35,8 @@
         android:hint="CURP"
         android:inputType="text"
         android:shadowColor="#000000"
-        android:textColorHint="#757575"
+        android:textColor="@color/black"
+        android:textColorHint="@color/transparente"
         android:textColorLink="#1E1C1C"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +53,8 @@
         android:fontFamily="@font/comfortaa_light"
         android:hint="Numero de Seguro Social"
         android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/transparente"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,10 +67,11 @@
         android:id="@+id/enviar_inicio"
         android:layout_width="380dp"
         android:layout_height="50dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/black"
         android:fontFamily="@font/comfortaa_light"
         android:onClick="inicio_entrar_menu"
         android:text="INICIAR SESIÓN"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:cornerRadius="10dp"
         app:iconPadding="10dp"
@@ -84,9 +91,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.235" />
+        app:layout_constraintVertical_bias="0.238" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

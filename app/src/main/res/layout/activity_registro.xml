@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white_background"
     tools:context=".MainActivity">
 
 
@@ -36,14 +36,14 @@
         android:fontFamily="@font/comfortaa_light"
         android:onClick="crear_entrar_menu"
         android:text="@string/iniciar_sesi_n"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777"
-        />
+        app:layout_constraintVertical_bias="0.777" />
 
     <EditText
         android:id="@+id/curp"
@@ -55,6 +55,8 @@
         android:fontFamily="@font/comfortaa_light"
         android:hint="@string/curp"
         android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/transparente"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enviar_crear"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +73,8 @@
         android:fontFamily="@font/comfortaa_light"
         android:hint="@string/numero_de_seguro_social"
         android:inputType="text"
-        android:textColorHint="#757575"
+        android:textColor="@color/black"
+        android:textColorHint="@color/transparente"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +92,8 @@
         android:fontFamily="@font/comfortaa_light"
         android:hint="@string/nombre"
         android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/transparente"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/curp"
         app:layout_constraintEnd_toEndOf="parent"

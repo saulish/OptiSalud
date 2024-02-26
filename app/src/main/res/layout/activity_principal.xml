@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_background"
     android:textAlignment="center">
 
     <TextView
@@ -29,7 +30,7 @@
         android:id="@+id/tableLayout"
         android:layout_width="363dp"
         android:layout_height="482dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -43,7 +44,7 @@
 
             <TableRow
                 android:id="@+id/columna1"
-                android:layout_width="160dp"
+                android:layout_width="167dp"
                 android:layout_height="120dp"
                 android:gravity="center">
 
@@ -344,65 +345,60 @@
     </TableLayout>
 
     <TableRow
-        android:id="@+id/logo_inicio"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
+        android:id="@+id/caja_menu"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
         android:background="@color/base"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.997">
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:srcCompat="@drawable/logo_inicio" />
-    </TableRow>
+        <TableRow
+            android:id="@+id/logo_user"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="ir_user">
 
-    <TableRow
-        android:id="@+id/logo_ajuste"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:background="@color/base"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/logo_usuario" />
+        </TableRow>
 
-        <ImageView
-            android:id="@+id/conf_logo"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:onClick="ir_config"
-            app:srcCompat="@drawable/logo_ajustes" />
-    </TableRow>
+        <TableRow
+            android:id="@+id/logo_ajuste"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center">
 
-    <TableRow
-        android:id="@+id/logo_user"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
-        android:background="@color/base"
-        android:gravity="center"
-        android:onClick="ir_user"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/logo_ajuste"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+            <ImageView
+                android:id="@+id/conf_logo"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:onClick="ir_config"
+                app:srcCompat="@drawable/logo_ajustes" />
+        </TableRow>
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:srcCompat="@drawable/logo_usuario" />
+        <TableRow
+            android:id="@+id/logo_inicio"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/logo_inicio" />
+        </TableRow>
     </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

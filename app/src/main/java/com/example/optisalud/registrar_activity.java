@@ -1,7 +1,11 @@
 package com.example.optisalud;
-import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,10 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Objects;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import java.io.IOException;
+
 public class registrar_activity extends AppCompatActivity {
     private Button registro;
     private TextView msj;
@@ -35,8 +36,44 @@ public class registrar_activity extends AppCompatActivity {
         nss    = findViewById(R.id.nss);
 
     }
-    private boolean verificar_curp(String cupr){
-        return false;
+
+    private boolean verificar_repetido(String curp,String nss){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("usuarios");
+        Query query = databaseReference.orderByKey().equalTo(nss);
+
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    msj.setText("NSS ya registrado");
+                    DataSnapshot nssSnapshot = dataSnapshot.child(nss);
+                    String curp_bd = nssSnapshot.child("Curp").getValue(String.class);
+                    if (curp != null & Objects.equals(curp, curp_bd)) {
+
+                        msj.setText("Curp y NSS ya registrados");
+                        return;
+
+
+                    } else {
+                        //msj.setText("No se encontro este CURP");
+                    }
+
+                } else {
+                    //msj.setText("No se encontro este NSS");
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                msj.setText("Error");
+            }
+        });
+        return (msj.getText()=="\"Curp y NSS ya registrados\"" || msj.getText()=="\"NSS ya registrado\"");
+
+   }
+    private boolean verificar_curp(String curp){
+        return curp.length() != 18;
     }
     private boolean verificar_cuenta(String nombre, String Curp,String nss ){
         if(Objects.equals(nombre, "") || Objects.equals(Curp, "") || Objects.equals(nss, "")){
@@ -45,6 +82,11 @@ public class registrar_activity extends AppCompatActivity {
         }
 
         if(verificar_curp(Curp)){
+            msj.setText("Curp invalida");
+            return false;
+        }
+        if(verificar_repetido(Curp, nss)){
+            //msj.setText("NSS duplicado");
             return false;
         }
         /*

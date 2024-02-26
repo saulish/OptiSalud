@@ -5,4 +5,6 @@
     <color name="icons">#D1E6EC</color>
     <color name="principal">#58A5AF</color>
     <color name="base">#B1CDCD</color>
+    <color name="white_background">#F4F4F4</color>
+    <color name="transparente">#807D7D</color>
 </resources>

@@ -24,6 +24,7 @@ public class iniciar_activity extends AppCompatActivity {
     private  EditText nss;
     @Override
     protected void onCreate(Bundle estadoInstancia){
+
         super.onCreate(estadoInstancia);
         setContentView(R.layout.activity_iniciar);
         enviar=findViewById(R.id.enviar_inicio);
