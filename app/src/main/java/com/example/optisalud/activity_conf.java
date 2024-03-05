@@ -5,9 +5,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +24,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 public class activity_conf extends AppCompatActivity {
     private Button num1;
@@ -47,12 +52,50 @@ public class activity_conf extends AppCompatActivity {
     private String operador = "";
     private boolean nuevaOperacion = true;
 
+    private VideoView video;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conf);
+
+        video=(VideoView)findViewById(R.id.videoGato);
+
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.gatos2;
+        Uri uri = Uri.parse(videoPath);
+        video.setVideoURI(uri);
+
+        // Configurar MediaController
+        MediaController mediaController = new MediaController(this);
+        video.setMediaController(mediaController);
+        mediaController.setAnchorView(video);
+
+        // Configurar un OnPreparedListener para detectar cuando el video está listo para reproducirse
+        video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                // Habilitar la reproducción en bucle
+                mp.setLooping(true);
+            }
+        });
+
+        // Iniciar la reproducción del video
+        video.start();
+
+
+        /*
+        video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                // Habilitar la reproducción en bucle
+                mp.setLooping(true);
+            }
+        });
+
+        // Iniciar la reproducción del video*/
+        video.start();
+
 
 
         num1= findViewById(R.id.num1);
@@ -73,7 +116,7 @@ public class activity_conf extends AppCompatActivity {
         divi=findViewById(R.id.divi);
         clear=findViewById(R.id.clear);
         respuesta= findViewById(R.id.respuesta);
-        titulo = findViewById(R.id.calculadora);
+        //titulo = findViewById(R.id.calculadora);
 
         num1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +159,7 @@ public class activity_conf extends AppCompatActivity {
                 agregarNumero("6");
             }
         });
+
 
         num7.setOnClickListener(new View.OnClickListener() {
             @Override

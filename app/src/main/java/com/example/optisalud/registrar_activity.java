@@ -85,11 +85,12 @@ public class registrar_activity extends AppCompatActivity {
             msj.setText("Curp invalida");
             return false;
         }
+        /*
         if(verificar_repetido(Curp, nss)){
             //msj.setText("NSS duplicado");
             return false;
         }
-        /*
+
         OkHttpClient client = new OkHttpClient();
         String url = "https://api.datos.gob.mx/v1/curp/" + Curp;
 
