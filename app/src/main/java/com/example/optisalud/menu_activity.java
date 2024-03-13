@@ -37,6 +37,10 @@ public class menu_activity extends AppCompatActivity {
         Intent intent = new Intent(menu_activity.this, activity_user.class );
         startActivity(intent);
     }
+    public void ir_medicamentos(View vier){
+        Intent intent = new Intent(menu_activity.this, MedicamentosActivity.class );
+        startActivity(intent);
+    }
 
 
 }
