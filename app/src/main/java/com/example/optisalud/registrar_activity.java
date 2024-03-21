@@ -1,4 +1,7 @@
 package com.example.optisalud;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +26,8 @@ public class registrar_activity extends AppCompatActivity {
     private EditText nombre;
     private EditText curp;
     private EditText nss;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle estadoInstancia){
@@ -35,8 +40,42 @@ public class registrar_activity extends AppCompatActivity {
         curp   = findViewById(R.id.curp);
         nss    = findViewById(R.id.nss);
 
+        mAuth = FirebaseAuth.getInstance();
+
+
     }
 
+    private void guardarInstancia(){
+        //String nss=mAuth.getCurrentUser().getEmail();
+        Datos.getInstance().setDatosUsuario(nombre.getText().toString(), curp.getText().toString(),nss.getText().toString());
+
+
+    }
+
+    private void registrarDB(String email, String password){
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Usuario creado exitosamente
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        // Realiza acciones adicionales si es necesario
+                    } else {
+                        // Manejar errores en la creación del usuario
+                        Exception e = task.getException();
+                        msj.setText("Error en la base de datos, "+e);
+
+                        //Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void guardarInfo(String name, String nss){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference nuevoUsuarioRef = databaseReference.child("usuarios");
+
+        nuevoUsuarioRef.child(nss).setValue(name);
+
+    }
     private boolean verificar_repetido(String curp,String nss){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("usuarios");
         Query query = databaseReference.orderByKey().equalTo(nss);
@@ -89,40 +128,15 @@ public class registrar_activity extends AppCompatActivity {
             //msj.setText("NSS duplicado");
             return false;
         }
-        /*
-        OkHttpClient client = new OkHttpClient();
-        String url = "https://api.datos.gob.mx/v1/curp/" + Curp;
-
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        try {
-            Response response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
-                assert response.body() != null;
-                String responseData = response.body().string();
-
-                msj.setText(responseData);
-            } else {
-                msj.setText("Error al realizar la solicitud");
-                return false;
-            }
-        } catch (IOException e) {
-            msj.setText("ERROR");
-            return false;
-        }
-        */
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference nuevoUsuarioRef = databaseReference.child("usuarios").child(nss);
-
-        nuevoUsuarioRef.child("nombre").setValue(nombre);
-        nuevoUsuarioRef.child("Curp").setValue(Curp);
-        Datos.getInstance().setDatosUsuario(nombre, Curp, nss);
 
         return true;
     }
     public void crear_entrar_menu(View view) {
         if(verificar_cuenta(nombre.getText().toString(),curp.getText().toString(),nss.getText().toString())){
+            String nssCorreo=nss.getText().toString()+"@gmail.com";
+            registrarDB(nssCorreo, curp.getText().toString());
+            guardarInstancia();
+            guardarInfo(nombre.getText().toString(),nss.getText().toString());
             Intent intent = new Intent(registrar_activity.this, menu_activity.class);
 
             startActivity(intent);

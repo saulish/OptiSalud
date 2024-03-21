@@ -1,5 +1,7 @@
 package com.example.optisalud;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +28,9 @@ public class iniciar_activity extends AppCompatActivity {
     private TextView msj;
     private EditText curp;
     private  EditText nss;
+
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle estadoInstancia){
 
@@ -33,41 +42,66 @@ public class iniciar_activity extends AppCompatActivity {
         curp = findViewById(R.id.curp_iniciar);
         nss= findViewById(R.id.nss_iniciar);
 
+        mAuth = FirebaseAuth.getInstance();
+
+
+
+
     }
-    private boolean verificar_cuenta(String nss, String Curp){
-        boolean verifcado;
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("usuarios");
-        Query query = databaseReference.orderByKey().equalTo(nss);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void guardarInstancia(String name){
+
+
+
+    }
+    private void getName_BD(String nss) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usuariosRef = databaseReference.child("usuarios");
+
+        usuariosRef.child(nss).addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
-                    DataSnapshot nssSnapshot = dataSnapshot.child(nss);
-                    String curp = nssSnapshot.child("Curp").getValue(String.class);
-                    String nombre = nssSnapshot.child("nombre").getValue(String.class);
-                    if (curp != null & Objects.equals(curp, Curp)) {
 
-                        Datos.getInstance().setDatosUsuario(nombre, Curp, nss);
+                    String name = dataSnapshot.getValue(String.class);
 
-                        Intent intent = new Intent(iniciar_activity.this, menu_activity.class );
-                        startActivity(intent);
+                    Toast.makeText(iniciar_activity.this, name, Toast.LENGTH_SHORT).show();
 
-                    } else {
-                        msj.setText("No se encontro este CURP");
-                    }
+                    Datos.getInstance().setDatosUsuario(name, curp.getText().toString(),nss);
 
-                } else {
-                    msj.setText("No se encontro este NSS");
+
                 }
 
+
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                msj.setText("Error");
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Manejar errores, si es necesario
             }
+
         });
-        verifcado= msj.getText() == "Verificado";
-        return verifcado;
+
+    }
+
+    private void verificar_cuenta(String nss, String Curp){
+        String email=nss+"@gmail.com";
+        String password=Curp;
+        mAuth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            getName_BD(nss);
+
+                        } else{
+                            msj.setText("Fallo en la autenticación");
+                        }
+                    }
+                });
+
     }
     public void inicio_entrar_menu (View view){
         String NSS =nss.getText().toString();
@@ -76,7 +110,11 @@ public class iniciar_activity extends AppCompatActivity {
             msj.setText("Datos faltantes");
             return;
         }
-        verificar_cuenta(nss.getText().toString(),curp.getText().toString());
+       verificar_cuenta(nss.getText().toString(),curp.getText().toString());
+        if(!Datos.existe()){
+            Intent intent = new Intent(iniciar_activity.this, menu_activity.class );
+            startActivity(intent);
+        }
 
 
 

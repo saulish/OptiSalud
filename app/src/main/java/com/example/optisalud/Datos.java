@@ -1,4 +1,6 @@
 package com.example.optisalud;
+import  java.lang.*;
+import android.widget.Toast;
 
 public class Datos {
     private static Datos instance;
@@ -9,10 +11,16 @@ public class Datos {
     private Datos() {}
 
     public static Datos getInstance() {
+
+        //System.out.print("aca");
         if (instance == null) {
             instance = new Datos();
         }
         return instance;
+    }
+    public static boolean existe(){
+
+        return (instance==null);
     }
 
     public String getNombre() {
