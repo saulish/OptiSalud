@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 public class menu_activity extends AppCompatActivity {
     private Button enviar;
     private ImageView conf;
@@ -18,12 +20,10 @@ public class menu_activity extends AppCompatActivity {
     protected void onCreate(Bundle estadoInstancia){
         super.onCreate(estadoInstancia);
         setContentView(R.layout.activity_principal);
-        /*
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("prueba").child("usuario1").setValue("Masturbin");
-        */
+
 
         conf=findViewById(R.id.conf_logo);
+
 
 
 

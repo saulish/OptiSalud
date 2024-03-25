@@ -26,7 +26,6 @@ public class registrar_activity extends AppCompatActivity {
     private EditText nombre;
     private EditText curp;
     private EditText nss;
-    private FirebaseAuth mAuth;
 
 
     @Override
@@ -40,77 +39,7 @@ public class registrar_activity extends AppCompatActivity {
         curp   = findViewById(R.id.curp);
         nss    = findViewById(R.id.nss);
 
-        mAuth = FirebaseAuth.getInstance();
-
-
     }
-
-    private void guardarInstancia(){
-        //String nss=mAuth.getCurrentUser().getEmail();
-        Datos.getInstance().setDatosUsuario(nombre.getText().toString(), curp.getText().toString(),nss.getText().toString());
-
-
-    }
-
-    private void registrarDB(String email, String password){
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        // Usuario creado exitosamente
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        // Realiza acciones adicionales si es necesario
-                    } else {
-                        // Manejar errores en la creación del usuario
-                        Exception e = task.getException();
-                        msj.setText("Error en la base de datos, "+e);
-
-                        //Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void guardarInfo(String name, String nss){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference nuevoUsuarioRef = databaseReference.child("usuarios");
-
-        nuevoUsuarioRef.child(nss).setValue(name);
-
-    }
-    private boolean verificar_repetido(String curp,String nss){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("usuarios");
-        Query query = databaseReference.orderByKey().equalTo(nss);
-
-
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    msj.setText("NSS ya registrado");
-                    DataSnapshot nssSnapshot = dataSnapshot.child(nss);
-                    String curp_bd = nssSnapshot.child("Curp").getValue(String.class);
-                    if (curp != null & Objects.equals(curp, curp_bd)) {
-
-                        msj.setText("Curp y NSS ya registrados");
-                        return;
-
-
-                    } else {
-                        //msj.setText("No se encontro este CURP");
-                    }
-
-                } else {
-                    //msj.setText("No se encontro este NSS");
-                }
-
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                msj.setText("Error");
-            }
-        });
-        return (msj.getText()=="\"Curp y NSS ya registrados\"" || msj.getText()=="\"NSS ya registrado\"");
-
-   }
     private boolean verificar_curp(String curp){
         return curp.length() != 18;
     }
@@ -124,21 +53,16 @@ public class registrar_activity extends AppCompatActivity {
             msj.setText("Curp invalida");
             return false;
         }
-        if(verificar_repetido(Curp, nss)){
-            //msj.setText("NSS duplicado");
-            return false;
-        }
+
 
         return true;
     }
     public void crear_entrar_menu(View view) {
+        helperFB conexion=new helperFB(registrar_activity.this);
         if(verificar_cuenta(nombre.getText().toString(),curp.getText().toString(),nss.getText().toString())){
-            String nssCorreo=nss.getText().toString()+"@gmail.com";
-            registrarDB(nssCorreo, curp.getText().toString());
-            guardarInstancia();
-            guardarInfo(nombre.getText().toString(),nss.getText().toString());
+            conexion.registrarDB(nss.getText().toString(),curp.getText().toString(),nombre.getText().toString(),msj);
+            conexion.guardarNombre(nombre.getText().toString(),nss.getText().toString());
             Intent intent = new Intent(registrar_activity.this, menu_activity.class);
-
             startActivity(intent);
         }
 
