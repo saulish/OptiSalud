@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,7 +69,7 @@ public class helperFB extends AppCompatActivity{
 
     public interface callbackAuth{
         void authExitosa();
-        void authFallida();
+        void authFallida(Task<AuthResult> task);
     }
     public void iniciarSesion(String nss, String pass, callbackAuth callback){
         String correo=nss+"@gmail.com";
@@ -83,30 +83,34 @@ public class helperFB extends AppCompatActivity{
 
                             callback.authExitosa();
                         } else {
-                            callback.authFallida();
+                            callback.authFallida(task);
 
                         }
                     }
                 });
     }
-    public void registrarDB(String nss, String curp,String name, TextView msj){
+
+    public void registrarDB(String nss, String curp, String name, TextView msj, Intent intent){
         String email=nss+"@gmail.com";
         mAuth.createUserWithEmailAndPassword(email, curp)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        guardarNombre(name,nss,intent);
                         Datos.crear(name, nss, curp );
-
-
-                        //FirebaseUser user = mAuth.getCurrentUser();
                     } else {
-                        Exception e = task.getException();
-                        msj.setText("Error en la base de datos, "+e);
+                        if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                            msj.setText("El NSS ya fue registrado");
+                        } else {
+                            Exception exception = task.getException();
+                            msj.setText("Error");
+                        }
                     }
                 });
     }
-    public void guardarNombre(String name, String nss){
+    public void guardarNombre(String name, String nss, Intent intent){
         DatabaseReference nuevoUsuarioRef = conexion.child("usuarios");
         nuevoUsuarioRef.child(nss).setValue(name);
+        //startActivity(intent);
 
     }
 

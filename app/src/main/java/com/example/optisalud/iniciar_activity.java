@@ -2,14 +2,18 @@ package com.example.optisalud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 
 public class iniciar_activity extends AppCompatActivity {
@@ -53,10 +57,18 @@ public class iniciar_activity extends AppCompatActivity {
             }
 
             @Override
-            public void authFallida() {
-                msj.setText("Fallo en la autenticación");
-
+            public void authFallida(Task<AuthResult> task) {
+                Exception exception = task.getException();
+                if (exception instanceof FirebaseAuthInvalidUserException) {
+                    msj.setText("NSS incorrecto o no registrado");
+                } else if (exception instanceof FirebaseAuthInvalidCredentialsException) {
+                    msj.setText("Datos incorrectoos");
+                } else {
+                    msj.setText("Error de conexión");
+                }
             }
+
+
         });
 
 

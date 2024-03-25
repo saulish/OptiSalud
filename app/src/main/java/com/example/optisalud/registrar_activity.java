@@ -58,12 +58,13 @@ public class registrar_activity extends AppCompatActivity {
         return true;
     }
     public void crear_entrar_menu(View view) {
+        Intent intent = new Intent(registrar_activity.this, menu_activity.class);
+
         helperFB conexion=new helperFB(registrar_activity.this);
         if(verificar_cuenta(nombre.getText().toString(),curp.getText().toString(),nss.getText().toString())){
-            conexion.registrarDB(nss.getText().toString(),curp.getText().toString(),nombre.getText().toString(),msj);
-            conexion.guardarNombre(nombre.getText().toString(),nss.getText().toString());
-            Intent intent = new Intent(registrar_activity.this, menu_activity.class);
-            startActivity(intent);
+            conexion.registrarDB(nss.getText().toString(),curp.getText().toString(),nombre.getText().toString(),msj,intent);
+            if(Datos.existe())
+                startActivity(intent);
         }
 
     }
