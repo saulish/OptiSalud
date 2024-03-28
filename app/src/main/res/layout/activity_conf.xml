@@ -6,6 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".activity_conf">
 
+    <TableRow
+        android:id="@+id/caja_menu"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/base"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1">
+
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:id="@+id/logo_ajuste"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/conf_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/logo_ajustes" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/logo_inicio"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="ir_menu">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/logo_inicio" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/logo_user"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="ir_user">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/logo_usuario" />
+        </TableRow>
+
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+
+    </TableRow>
+
     <TextView
         android:id="@+id/pruebaBD"
         android:layout_width="197dp"

@@ -24,21 +24,16 @@ public class activity_conf extends AppCompatActivity {
         setContentView(R.layout.activity_conf);
         pruebD = findViewById(R.id.pruebaBD);
 
-
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
-        databaseReference.child("prueba").child("usuario1").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String nombre = dataSnapshot.getValue(String.class);
-                pruebD.setText(nombre);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-
-            }
-        });
     }
-}
+    public void ir_config (View view){
+        Intent intent = new Intent(activity_conf.this, activity_conf.class );
+        startActivity(intent);
+    }
+    public void ir_user(View vier){
+        Intent intent = new Intent(activity_conf.this, activity_user.class );
+        startActivity(intent);
+    }
+    public void ir_menu(View vier){
+        Intent intent = new Intent(activity_conf.this, menu_activity.class );
+        startActivity(intent);
+    }}

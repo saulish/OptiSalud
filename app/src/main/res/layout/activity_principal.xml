@@ -7,31 +7,13 @@
     android:background="@color/white_background"
     android:textAlignment="center">
 
-    <TextView
-        android:id="@+id/titulo"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:background="@color/principal"
-        android:backgroundTint="@color/principal"
-        android:fontFamily="@font/comfortaa"
-        android:gravity="center_vertical"
-        android:text="OptiSalud"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="363dp"
-        android:layout_height="482dp"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
         android:layout_marginTop="20dp"
+        android:gravity="center|top"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,11 +22,12 @@
         <TableRow
             android:id="@+id/fila1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <TableRow
                 android:id="@+id/columna1"
-                android:layout_width="167dp"
+                android:layout_width="180dp"
                 android:layout_height="120dp"
                 android:gravity="center">
 
@@ -52,8 +35,10 @@
                     android:id="@+id/logo1"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
-                    android:background="@color/icons"
+                    android:background="@drawable/bordesuperior"
                     android:gravity="center"
+                    app:cornerRadius="10dp"
+
                     tools:ignore="UselessParent">
 
                     <ImageView
@@ -70,17 +55,21 @@
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:gravity="center|top"
-                android:onClick="ir_medicamentos">
+                android:onClick="ir_medicamentos"
+                tools:ignore="ExtraText">
+
 
                 <TableRow
                     android:id="@+id/logo2"
                     android:layout_width="150dp"
+
                     android:layout_height="match_parent"
-                    android:background="@color/icons"
+                    android:background="@drawable/bordesuperior"
                     android:gravity="center">
 
                     <ImageView
                         android:id="@+id/logo_consulta"
+
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:srcCompat="@drawable/logo_busqueda" />
@@ -93,63 +82,81 @@
         <TableRow
             android:id="@+id/texto_1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="50dp"
+            android:gravity="center">
 
             <TableRow
                 android:id="@+id/primer"
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center">
 
                 <TableRow
                     android:id="@+id/texto_escanear"
                     android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:background="@color/icons">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordeinferior">
 
                     <TextView
                         android:id="@+id/textView12"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="25dp"
                         android:fontFamily="@font/comfortaa"
                         android:text="Escanear receta"
-                        android:textAlignment="center"
-                        android:textSize="16sp" />
-                </TableRow>
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/segundo"
-                android:layout_width="180dp"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TableRow
-                    android:id="@+id/texto_consulta"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:background="@color/icons"
-                    android:onClick="ir_medicamentos">
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/comfortaa"
-                        android:text="Consulta de medicamentos"
                         android:textAlignment="center"
                         android:textSize="14sp" />
                 </TableRow>
 
             </TableRow>
 
+            <TableRow
+                android:id="@+id/segundo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TableRow
+                    android:id="@+id/texto_consulta"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordeinferior"
+                    android:gravity="top"
+                    android:onClick="ir_medicamentos"
+                    tools:ignore="TouchTargetSizeCheck">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/comfortaa"
+                        android:text="Consulta de medicamentos"
+                        android:textAlignment="center"
+                        android:textSize="12sp" />
+                </TableRow>
+
+            </TableRow>
+
         </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="250dp"
+        android:gravity="bottom|center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo">
 
         <TableRow
             android:id="@+id/fila2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <TableRow
                 android:id="@+id/columna3"
@@ -161,7 +168,7 @@
                     android:id="@+id/logo3"
                     android:layout_width="150dp"
                     android:layout_height="110dp"
-                    android:background="@color/icons"
+                    android:background="@drawable/bordesuperior"
                     android:gravity="center">
 
                     <ImageView
@@ -182,7 +189,7 @@
                     android:id="@+id/logo4"
                     android:layout_width="150dp"
                     android:layout_height="110dp"
-                    android:background="@color/icons"
+                    android:background="@drawable/bordesuperior"
                     android:gravity="center">
 
                     <ImageView
@@ -197,7 +204,8 @@
         <TableRow
             android:id="@+id/texto_2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <TableRow
                 android:id="@+id/tercero"
@@ -208,8 +216,8 @@
                 <TableRow
                     android:id="@+id/texto_entrega"
                     android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:background="@color/icons">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordeinferior">
 
                     <TextView
                         android:id="@+id/textView"
@@ -218,7 +226,7 @@
                         android:fontFamily="@font/comfortaa"
                         android:text="Entrega a domicilio"
                         android:textAlignment="center"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
                 </TableRow>
             </TableRow>
 
@@ -231,8 +239,8 @@
                 <TableRow
                     android:id="@+id/texto_solicitar"
                     android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:background="@color/icons">
+                    android:layout_height="30dp"
+                    android:background="@drawable/bordeinferior">
 
                     <TextView
                         android:id="@+id/textView2"
@@ -240,127 +248,81 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/comfortaa"
                         android:text="Solicitar asistencia"
-                        android:textAlignment="center" />
-                </TableRow>
-            </TableRow>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/fila3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-                android:id="@+id/columna5"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:gravity="bottom|center">
-
-                <TableRow
-                    android:id="@+id/logo5"
-                    android:layout_width="150dp"
-                    android:layout_height="110dp"
-                    android:background="@color/icons"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:srcCompat="@drawable/logo_calendario" />
-                </TableRow>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/columna6"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:gravity="bottom|center">
-
-                <TableRow
-                    android:id="@+id/logo6"
-                    android:layout_width="150dp"
-                    android:layout_height="110dp"
-                    android:background="@color/icons"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:srcCompat="@drawable/logo_pregunta" />
-                </TableRow>
-            </TableRow>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/texto_3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-                android:id="@+id/quinto"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TableRow
-                    android:id="@+id/texto_recordatorios"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:background="@color/icons">
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/comfortaa"
-                        android:text="Recordatorios"
                         android:textAlignment="center"
-                        android:textSize="16sp" />
-                </TableRow>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sexto"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TableRow
-                    android:id="@+id/texto_ayuda"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:background="@color/icons">
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/comfortaa"
-                        android:text="Ayuda"
-                        android:textAlignment="center"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
                 </TableRow>
             </TableRow>
         </TableRow>
 
     </TableLayout>
 
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:background="@color/principal"
+        android:backgroundTint="@color/principal"
+        android:fontFamily="@font/comfortaa"
+        android:gravity="center_vertical"
+        android:text=" OptiSalud"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TableRow
         android:id="@+id/caja_menu"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:background="@color/base"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.997">
+        app:layout_constraintVertical_bias="1">
+
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:id="@+id/logo_ajuste"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/conf_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="ir_config"
+                app:srcCompat="@drawable/logo_ajustes" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/logo_inicio"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/logo_inicio" />
+        </TableRow>
 
         <TableRow
             android:id="@+id/logo_user"
-            android:layout_width="130dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="@color/base"
             android:gravity="center"
@@ -368,39 +330,15 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 app:srcCompat="@drawable/logo_usuario" />
         </TableRow>
 
-        <TableRow
-            android:id="@+id/logo_ajuste"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:background="@color/base"
-            android:gravity="center">
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
 
-            <ImageView
-                android:id="@+id/conf_logo"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:onClick="ir_config"
-                app:srcCompat="@drawable/logo_ajustes" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/logo_inicio"
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:background="@color/base"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                app:srcCompat="@drawable/logo_inicio" />
-        </TableRow>
     </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,6 @@
     <color name="base">#B1CDCD</color>
     <color name="white_background">#F4F4F4</color>
     <color name="transparente">#807D7D</color>
+    <color name="datosFondo">#D0D3D9</color>
+    <color name="letrasDatos">#50555C</color>
 </resources>

@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:forceDarkAllowed="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_background">
+    android:background="@color/white"
+    android:forceDarkAllowed="true">
 
 
     <TextView
@@ -13,9 +13,8 @@
         android:layout_width="342dp"
         android:layout_height="70dp"
         android:fontFamily="@font/comfortaa_light"
-        android:shadowColor="@color/black"
         android:text="Iniciar sesión"
-        android:textColorHint="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,47 +27,54 @@
         android:id="@+id/curp_iniciar"
         android:layout_width="380dp"
         android:layout_height="50dp"
-        android:layout_marginTop="159dp"
+        android:layout_marginTop="160dp"
         android:autofillHints=""
+        android:background="@drawable/bordenegro"
         android:ems="10"
-        android:fontFamily="@font/comfortaa_light"
+        android:fontFamily="@font/roboto"
         android:hint="CURP"
         android:inputType="text"
-        android:shadowColor="#000000"
+        android:padding="10dp"
         android:textColor="@color/black"
+
         android:textColorHint="@color/transparente"
-        android:textColorLink="#1E1C1C"
+
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.099" />
 
     <EditText
         android:id="@+id/nss_iniciar"
         android:layout_width="380dp"
         android:layout_height="50dp"
+        android:background="@drawable/bordenegro"
         android:ems="10"
-        android:fontFamily="@font/comfortaa_light"
-        android:hint="Numero de Seguro Social"
+        android:fontFamily="@font/roboto"
+        android:hint=" Numero de Seguro Social"
         android:inputType="text"
+
+        android:padding="10dp"
+        android:textAlignment="gravity"
         android:textColor="@color/black"
         android:textColorHint="@color/transparente"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/curp_iniciar"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.406" />
 
     <Button
         android:id="@+id/enviar_inicio"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/black"
-        android:fontFamily="@font/comfortaa_light"
+        android:fontFamily="@font/roboto"
         android:onClick="inicio_entrar_menu"
         android:text="INICIAR SESIÓN"
         android:textColor="@color/white"
@@ -77,10 +83,10 @@
         app:iconPadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nss_iniciar"
-        app:layout_constraintVertical_bias="0.206" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524" />
 
     <TextView
         android:id="@+id/Texto_msj"
@@ -94,6 +100,6 @@
         app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.231" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

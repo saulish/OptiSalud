@@ -35,37 +35,51 @@
         app:layout_constraintVertical_bias="0.499"
         app:srcCompat="@drawable/logo_app" />
 
-    <Button
-        android:id="@+id/boton_registro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
-        android:onClick="crear_cuenta"
-        android:text="REGISTRARSE"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#8A8787"
-        android:textStyle="normal"
-        app:cornerRadius="@null"
+    <TableRow
+        android:layout_width="0dp"
+        android:layout_height="67dp"
+        android:background="@color/white"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintVertical_bias="1.0">
 
-    <Button
-        android:id="@+id/boton_inicio_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
-        android:onClick="iniciar_sesion"
-        android:text="INICIAR SESIÓN"
-        android:textColor="#090909"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/boton_registro"
-        app:layout_constraintHorizontal_bias="0.717"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+
+
+        <Button
+            android:id="@+id/boton_inicio_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="iniciar_sesion"
+            android:text="INICIAR SESIÓN"
+            android:textColor="#090909"
+            android:backgroundTint="@color/white"
+            app:cornerRadius="5sp"
+            app:strokeColor="@color/black"
+
+            app:strokeWidth="2dp"
+             />
+
+
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/boton_registro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:onClick="crear_cuenta"
+            android:text="REGISTRARSE"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#8A8787"
+            android:textStyle="normal"
+            app:cornerRadius="5sp" />
+
+    </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

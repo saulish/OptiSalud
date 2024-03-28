@@ -7,110 +7,239 @@
     android:background="@color/white_background"
     tools:context=".activity_user">
 
+    <TableRow
+        android:id="@+id/caja_menu"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/base"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1">
+
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:id="@+id/logo_ajuste"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="ir_config">
+
+            <ImageView
+                android:id="@+id/conf_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="ir_config"
+                app:srcCompat="@drawable/logo_ajustes" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/logo_inicio"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="ir_menu">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/logo_inicio" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/logo_user"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/base"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/logo_usuario" />
+        </TableRow>
+
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+
+    </TableRow>
+
     <TextView
         android:id="@+id/datos"
         android:layout_width="0dp"
-        android:layout_height="149dp"
-        android:background="@color/principal"
-        android:backgroundTint="@color/principal"
+        android:layout_height="100dp"
         android:fontFamily="@font/comfortaa"
         android:gravity="center_vertical"
-        android:text="OptiSalud"
+        android:text=" Mi cuenta"
         android:textColor="#000000"
-        android:textSize="36sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.045" />
+
+    <EditText
+        android:id="@+id/unidadMedicaUser"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/esquinas"
+        android:ems="10"
+        android:hint="UNIDAD MÉDICA"
+        android:inputType="text"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.709" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center|left"
+        android:text="UNIDAD MÉDICA"
+        android:textAlignment="gravity"
+        android:textColor="@color/letrasDatos"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.63" />
 
     <TextView
         android:id="@+id/nombre_user"
-        android:layout_width="400dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="251dp"
-        android:fontFamily="@font/comfortaa"
-        android:hint="Nombre"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/datos"
-        app:layout_constraintVertical_bias="0.119" />
+        android:layout_width="350dp"
+        android:layout_height="50dp"
 
-    <TextView
-        android:id="@+id/curp_user"
-        android:layout_width="400dp"
-        android:layout_height="40dp"
-        android:fontFamily="@font/comfortaa"
-        android:hint="CURP"
+        android:background="@drawable/esquinas"
+        android:fontFamily="@font/roboto"
+        android:gravity="center|left"
+        android:hint="Nombre"
+        android:padding="5dp"
+        android:textAlignment="gravity"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.681" />
+        app:layout_constraintVertical_bias="0.248" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:fontFamily="@font/comfortaa"
-        android:text="Nombre:"
-        android:textSize="34sp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center|left"
+        android:text="NOMBRE"
+        android:textAlignment="gravity"
+        android:textColor="@color/letrasDatos"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nombre_user"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
+        app:layout_constraintVertical_bias="0.181" />
+
+    <TextView
+        android:id="@+id/nss_user"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/esquinas"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:gravity="center|left"
+        android:hint="NSS"
+        android:inputType="text"
+        android:padding="5dp"
+        android:textAlignment="gravity"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.553" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center|left"
+        android:text="NSS"
+        android:textAlignment="gravity"
+        android:textColor="@color/letrasDatos"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/datos"
+        app:layout_constraintVertical_bias="0.458" />
+
+    <TextView
+        android:id="@+id/curp_user"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/esquinas"
+        android:fontFamily="@font/roboto"
+        android:gravity="center|left"
+        android:hint="CURP"
+        android:padding="5dp"
+        android:textAlignment="gravity"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.403" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:fontFamily="@font/comfortaa"
-        android:text="CURP:"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/curp_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.923" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="385dp"
-        android:layout_height="50dp"
-        android:fontFamily="@font/comfortaa"
-        android:text="Numero de Seguro Social:"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nss_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/datos"
-        app:layout_constraintVertical_bias="0.975" />
-
-    <TextView
-        android:id="@+id/nss_user"
-        android:layout_width="399dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="56dp"
-        android:ems="10"
-        android:hint="NSS"
-        android:inputType="text"
+        android:layout_height="30dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center|left"
+        android:text="CURP"
+        android:textAlignment="gravity"
+        android:textColor="@color/letrasDatos"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.333" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
