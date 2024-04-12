@@ -38,11 +38,7 @@ public class iniciar_activity extends AppCompatActivity {
 
 
     }
-    private void guardarInstancia(String name){
 
-
-
-    }
     private void verificar_cuenta(String nss, String Curp){
         msj.setText("");
         Intent intent = new Intent(iniciar_activity.this, menu_activity.class );

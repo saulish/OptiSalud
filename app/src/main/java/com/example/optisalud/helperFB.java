@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class helperFB extends AppCompatActivity{
     private DatabaseReference conexion;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -28,6 +30,7 @@ public class helperFB extends AppCompatActivity{
     private String nombreConsultado;
 
     private Context contextoConexion;
+    static private ArrayList<String> meds;
 
 
 
@@ -37,6 +40,9 @@ public class helperFB extends AppCompatActivity{
         contextoConexion=context;
         conexion=  FirebaseDatabase.getInstance().getReference();
         nombreConsultado="";
+    }
+    private boolean medExiste(){
+        return (meds!=null);
     }
     public String consultarNombre(String nss, String curp, Context context,Intent intent){
         DatabaseReference usuariosRef = conexion.child("usuarios");
@@ -110,7 +116,52 @@ public class helperFB extends AppCompatActivity{
     public void guardarNombre(String name, String nss, Intent intent){
         DatabaseReference nuevoUsuarioRef = conexion.child("usuarios");
         nuevoUsuarioRef.child(nss).setValue(name);
-        //startActivity(intent);
+
+    }
+    public ArrayList<String> getMedicamentos(Context contexto){
+        if(medExiste()) return meds;
+        meds = new ArrayList<>();
+        DatabaseReference ref=conexion.child("medicamentos");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child: snapshot.getChildren()){
+                    meds.add(child.getKey());
+                    //Toast.makeText(contexto, child.getKey(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(contexto, "Error al conectarse", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        return meds;
+
+    }
+    public void getCantMed(String nombre, String clinica,Context contexto){
+        DatabaseReference med=conexion.child("medicamentos").child(nombre).child(clinica).child("cantidad");
+        //med.child("cantidad");
+        med.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    Toast.makeText(contexto, "Cantidad: " + snapshot.getValue(String.class), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(contexto, "No encontrado", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(contexto, "Error al conectarse ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
     }
 

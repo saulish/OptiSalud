@@ -27,8 +27,10 @@ public class menu_activity extends AppCompatActivity {
 
 
 
-
     }
+
+
+
     public void ir_config (View view){
         Intent intent = new Intent(menu_activity.this, activity_conf.class );
         startActivity(intent);

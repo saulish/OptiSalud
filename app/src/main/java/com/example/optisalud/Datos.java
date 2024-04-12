@@ -17,9 +17,6 @@ public class Datos {
     }
 
     public static Datos getInstance() {
-
-        //System.out.print("aca");
-
         return instance;
     }
 
