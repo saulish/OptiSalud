@@ -164,5 +164,7 @@ public class helperFB extends AppCompatActivity{
 
 
     }
+    public void buscarMed(String nombre){
 
+    }
 }
