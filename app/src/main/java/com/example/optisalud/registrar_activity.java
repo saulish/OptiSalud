@@ -26,6 +26,7 @@ public class registrar_activity extends AppCompatActivity {
     private EditText nombre;
     private EditText curp;
     private EditText nss;
+    private EditText clinica;
 
 
     @Override
@@ -38,6 +39,7 @@ public class registrar_activity extends AppCompatActivity {
         nombre = findViewById(R.id.nombre);
         curp   = findViewById(R.id.curp);
         nss    = findViewById(R.id.nss);
+        clinica=findViewById(R.id.clinica);
 
     }
     private boolean verificar_curp(String curp){
@@ -62,12 +64,13 @@ public class registrar_activity extends AppCompatActivity {
 
         helperFB conexion=new helperFB(registrar_activity.this);
         if(verificar_cuenta(nombre.getText().toString(),curp.getText().toString(),nss.getText().toString())){
-            conexion.registrarDB(nss.getText().toString(),curp.getText().toString(),nombre.getText().toString(),msj,intent);
+            conexion.registrarDB(nss.getText().toString(),curp.getText().toString(),nombre.getText().toString(),clinica.getText().toString(),msj,intent);
             if(Datos.existe())
                 startActivity(intent);
         }
 
     }
+
 
 }
 

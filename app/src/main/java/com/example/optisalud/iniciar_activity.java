@@ -43,6 +43,7 @@ public class iniciar_activity extends AppCompatActivity {
         msj.setText("");
         Intent intent = new Intent(iniciar_activity.this, menu_activity.class );
         helperFB conexion=new helperFB(this);
+        //conexion.prueba();
         conexion.iniciarSesion(nss, Curp, new helperFB.callbackAuth() {
             @Override
             public void authExitosa() {

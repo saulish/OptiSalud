@@ -45,16 +45,18 @@ public class helperFB extends AppCompatActivity{
         return (meds!=null);
     }
     public String consultarNombre(String nss, String curp, Context context,Intent intent){
-        DatabaseReference usuariosRef = conexion.child("usuarios");
-        usuariosRef.child(nss).addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference usuariosRef =conexion;
+        usuariosRef.child("usuarios").child(nss).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
-                    nombreConsultado = dataSnapshot.getValue(String.class);
+                    dataSnapshot.getValue();
+                    nombreConsultado = dataSnapshot.child("nombre").getValue(String.class);
+                    String clinicaConsultada = dataSnapshot.child("clinica").getValue(String.class);
                     Toast.makeText(context, nombreConsultado, Toast.LENGTH_SHORT).show();
-                    Datos.crear(nombreConsultado, nss, curp );
+                    Datos.crear(nombreConsultado, nss, curp,clinicaConsultada );
                 }else{
                     Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
 
@@ -96,13 +98,13 @@ public class helperFB extends AppCompatActivity{
                 });
     }
 
-    public void registrarDB(String nss, String curp, String name, TextView msj, Intent intent){
+    public void registrarDB(String nss, String curp, String name,String clinica, TextView msj, Intent intent){
         String email=nss+"@gmail.com";
         mAuth.createUserWithEmailAndPassword(email, curp)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        guardarNombre(name,nss,intent);
-                        Datos.crear(name, nss, curp );
+                        guardarNombre(name,nss,clinica,intent);
+                        Datos.crear(name, nss, curp,clinica);
                     } else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                             msj.setText("El NSS ya fue registrado");
@@ -113,9 +115,11 @@ public class helperFB extends AppCompatActivity{
                     }
                 });
     }
-    public void guardarNombre(String name, String nss, Intent intent){
-        DatabaseReference nuevoUsuarioRef = conexion.child("usuarios");
-        nuevoUsuarioRef.child(nss).setValue(name);
+    public void guardarNombre(String name, String nss, String clinica, Intent intent){
+        DatabaseReference nombreRef = conexion.child("usuarios").child(nss);
+        nombreRef.child("nombre").setValue(name);
+        DatabaseReference clinicaRef = conexion.child("usuarios").child(nss);
+        clinicaRef.child("clinica").setValue(clinica);
 
     }
     public ArrayList<String> getMedicamentos(Context contexto){
@@ -125,9 +129,12 @@ public class helperFB extends AppCompatActivity{
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String clinica=Datos.getInstance().getClinica();
                 for(DataSnapshot child: snapshot.getChildren()){
+                    if(!child.child(clinica).exists()){
+                        continue;
+                    }
                     meds.add(child.getKey());
-                    //Toast.makeText(contexto, child.getKey(), Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -165,6 +172,30 @@ public class helperFB extends AppCompatActivity{
 
     }
     public void buscarMed(String nombre){
+
+    }
+    public void prueba(){
+        DatabaseReference usuariosRef = conexion;
+        usuariosRef.child("usuarios").child("2555").addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    dataSnapshot.getValue();
+                }else{
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Manejar errores, si es necesario
+            }
+
+        });
 
     }
 }

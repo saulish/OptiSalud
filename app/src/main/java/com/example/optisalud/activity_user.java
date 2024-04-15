@@ -20,6 +20,7 @@ public class activity_user extends AppCompatActivity {
     private String  nombre;
     private String curp;
     private String nss;
+    private String clinica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,14 @@ public class activity_user extends AppCompatActivity {
         nombre=Datos.getInstance().getNombre();
         curp= Datos.getInstance().getCurp();
         nss= Datos.getInstance().getNss();
+        clinica=Datos.getInstance().getClinica();
+
 
 
         Text_nombre.setText(nombre);
         Text_curp.setText(curp);
         Text_nss.setText(nss);
-        Text_clinica.setText("Clínnica 1 IMSS");
+        Text_clinica.setText(clinica);
 
     }
     public void ir_config (View view){

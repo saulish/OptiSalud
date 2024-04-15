@@ -34,6 +34,10 @@ public class MedicamentosActivity extends AppCompatActivity {
 
         ArrayList<String> medicamentos =  pedirLista();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.style_list, medicamentos);
+        if(medicamentos.isEmpty()){
+            //Toast.makeText(getApplicationContext(), "Valio barriga señor verga", Toast.LENGTH_SHORT).show();
+
+        }
         lista.setAdapter(adapter);
 
 
