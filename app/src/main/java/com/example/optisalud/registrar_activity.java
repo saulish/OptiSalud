@@ -1,13 +1,4 @@
 package com.example.optisalud;
-import com.google.firebase.Firebase;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Objects;
+
 
 public class registrar_activity extends AppCompatActivity {
     private Button registro;
@@ -26,7 +20,7 @@ public class registrar_activity extends AppCompatActivity {
     private EditText nombre;
     private EditText curp;
     private EditText nss;
-    private EditText clinica;
+    private Spinner clinica;
 
 
     @Override
@@ -39,8 +33,13 @@ public class registrar_activity extends AppCompatActivity {
         nombre = findViewById(R.id.nombre);
         curp   = findViewById(R.id.curp);
         nss    = findViewById(R.id.nss);
-        clinica=findViewById(R.id.clinica);
+        clinica=findViewById(R.id.clinicaSelect);
+        pedirClinicas(clinica);
+    }
 
+    private  ArrayList<String> pedirClinicas(Spinner clinica){
+        helperFB conexion=new helperFB(this,clinica);
+        return conexion.getClinicas();
     }
     private boolean verificar_curp(String curp){
         return curp.length() != 18;
@@ -59,14 +58,23 @@ public class registrar_activity extends AppCompatActivity {
 
         return true;
     }
+
     public void crear_entrar_menu(View view) {
         Intent intent = new Intent(registrar_activity.this, menu_activity.class);
+        String clinicaText = clinica.getSelectedItem().toString();
+        helperFB conexion=new helperFB(this);
+        if (verificar_cuenta(nombre.getText().toString(), curp.getText().toString(), nss.getText().toString())) {
+            conexion.registrarDB(nss.getText().toString(),curp.getText().toString(),nombre.getText().toString(),clinicaText, new helperFB.RegistroCallback(){
+                public void onRegistroExitoso() {
+                    startActivity(intent);
+                }
 
-        helperFB conexion=new helperFB(registrar_activity.this);
-        if(verificar_cuenta(nombre.getText().toString(),curp.getText().toString(),nss.getText().toString())){
-            conexion.registrarDB(nss.getText().toString(),curp.getText().toString(),nombre.getText().toString(),clinica.getText().toString(),msj,intent);
-            if(Datos.existe())
-                startActivity(intent);
+                @Override
+                public void onRegistroFallido(String mensaje) {
+                    msj.setText(mensaje);
+                }
+            });
+
         }
 
     }

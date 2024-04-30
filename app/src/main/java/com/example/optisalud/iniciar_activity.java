@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,12 +34,8 @@ public class iniciar_activity extends AppCompatActivity {
         msj = findViewById(R.id.Texto_msj);
         curp = findViewById(R.id.curp_iniciar);
         nss= findViewById(R.id.nss_iniciar);
-
-
-
-
-
     }
+
 
     private void verificar_cuenta(String nss, String Curp){
         msj.setText("");

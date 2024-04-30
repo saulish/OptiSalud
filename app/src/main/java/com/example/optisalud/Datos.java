@@ -1,14 +1,21 @@
 package com.example.optisalud;
+import static androidx.core.content.ContextCompat.startActivity;
+
 import  java.lang.*;
+
+import android.content.Intent;
 import android.widget.Toast;
 
-public class Datos {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Datos extends AppCompatActivity {
 
     private static Datos instance;
     private String nombre;
     private String curp;
     private String nss;
     private String clinica;
+    private Intent intent;
 
     //private Datos() {}
     private Datos(String name, String nss, String CURP,String clinica){
@@ -16,6 +23,13 @@ public class Datos {
         this.nss=nss;
         this.nombre=name;
         this.clinica=clinica;
+    }
+    private Datos(String name, String nss, String CURP,String clinica,Intent intent){
+        this.curp=CURP;
+        this.nss=nss;
+        this.nombre=name;
+        this.clinica=clinica;
+        this.intent=intent;
     }
 
     public static Datos getInstance() {
@@ -27,7 +41,16 @@ public class Datos {
         instance= new Datos(name,nss,CURP,clinica);
 
     }
+    public static void crear(String name, String nss, String CURP, String clinica,Intent intent){
 
+        instance= new Datos(name,nss,CURP,clinica,intent);
+
+    }
+    public void ejecutarIntent(){
+        if(instance!=null){
+            startActivity(intent);
+        }
+    }
     public static boolean existe(){
 
         return !(instance==null);
@@ -58,5 +81,8 @@ public class Datos {
         this.nombre = nombre;
         this.curp = curp;
         this.nss = nss;
+    }
+    public static void eliminarDatos(){
+        instance=null;
     }
 }

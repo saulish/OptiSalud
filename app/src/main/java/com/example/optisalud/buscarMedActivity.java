@@ -22,6 +22,18 @@ public class buscarMedActivity extends AppCompatActivity {
 
     }
     public void buscarMed(View view){
+        String medicamento = nombre.getText().toString();
+        medicamento = medicamento.toLowerCase();
+        medicamento = medicamento.substring(0, 1).toUpperCase() + medicamento.substring(1);
+
+        String clinica =Datos.getInstance().getClinica();
+        if(nombre.getText().toString().equals("")){
+            nombreTxt.setText("INGRESA ALGO");
+            return;
+        }
+        helperFB conexion=new helperFB(this);
+        conexion.buscarMedClinica(medicamento,clinica,nombreTxt);
+
 
 
     }

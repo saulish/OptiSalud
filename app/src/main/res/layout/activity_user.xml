@@ -91,24 +91,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
 
-    <EditText
-        android:id="@+id/unidadMedicaUser"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:background="@drawable/esquinas"
-        android:ems="10"
-        android:hint="UNIDAD MÉDICA"
-        android:inputType="text"
-        android:padding="5dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="250dp"
@@ -242,4 +224,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.333" />
 
+
+    <Spinner
+        android:id="@+id/clinicaSelect"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bordenegro"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Clinica"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
+
+    <Button
+        android:id="@+id/salida"
+        android:layout_width="183dp"
+        android:layout_height="46dp"
+        android:onClick="logOut"
+        android:text="Cerrar sesion"
+        app:layout_constraintBottom_toTopOf="@+id/caja_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clinicaSelect" />
 </androidx.constraintlayout.widget.ConstraintLayout>

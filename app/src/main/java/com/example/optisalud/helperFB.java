@@ -3,6 +3,8 @@ package com.example.optisalud;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 
 public class helperFB extends AppCompatActivity{
     private DatabaseReference conexion;
+    private Spinner listaClinica;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private boolean activo;
 
@@ -31,6 +35,9 @@ public class helperFB extends AppCompatActivity{
 
     private Context contextoConexion;
     static private ArrayList<String> meds;
+    static private ArrayList<String> clinicas;
+
+    private Intent accion;
 
 
 
@@ -41,8 +48,32 @@ public class helperFB extends AppCompatActivity{
         conexion=  FirebaseDatabase.getInstance().getReference();
         nombreConsultado="";
     }
+    public  helperFB(Context context,Spinner spinnerClinica){
+        FirebaseApp.initializeApp(context);
+        contextoConexion=context;
+        conexion=  FirebaseDatabase.getInstance().getReference();
+        nombreConsultado="";
+        listaClinica=spinnerClinica;
+    }
+    public  helperFB(Context context,Intent intent){
+        FirebaseApp.initializeApp(context);
+        contextoConexion=context;
+        conexion=  FirebaseDatabase.getInstance().getReference();
+        nombreConsultado="";
+        accion=intent;
+    }
+    public void eliminarConexion(){
+        //meds.clear();
+        meds=null;
+        //clinicas.clear();
+        clinicas=null;
+
+    }
     private boolean medExiste(){
         return (meds!=null);
+    }
+    private boolean clinicaExiste(){
+        return (clinicas!=null);
     }
     public String consultarNombre(String nss, String curp, Context context,Intent intent){
         DatabaseReference usuariosRef =conexion;
@@ -97,29 +128,41 @@ public class helperFB extends AppCompatActivity{
                     }
                 });
     }
+    public boolean activo() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        return user != null;
+    }
+    public interface RegistroCallback {
+        void onRegistroExitoso();
+        void onRegistroFallido(String mensaje);
+    }
+    public void registrarDB(String nss, String curp, String name,String clinica, RegistroCallback callback) {
+        String email = nss + "@gmail.com";
 
-    public void registrarDB(String nss, String curp, String name,String clinica, TextView msj, Intent intent){
-        String email=nss+"@gmail.com";
         mAuth.createUserWithEmailAndPassword(email, curp)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        guardarNombre(name,nss,clinica,intent);
-                        Datos.crear(name, nss, curp,clinica);
+                        Toast.makeText(contextoConexion, name, Toast.LENGTH_SHORT).show();
+
+                        Datos.crear(name, nss, curp, clinica);
+                        guardarNombre(name, nss, clinica);
+                        callback.onRegistroExitoso();
                     } else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                            msj.setText("El NSS ya fue registrado");
+                            callback.onRegistroFallido("El NSS ya fue registrado");
                         } else {
                             Exception exception = task.getException();
-                            msj.setText("Error");
+                            callback.onRegistroFallido("Error al registrar usuario");
                         }
                     }
                 });
     }
-    public void guardarNombre(String name, String nss, String clinica, Intent intent){
+    public void guardarNombre(String name, String nss, String clinica){
         DatabaseReference nombreRef = conexion.child("usuarios").child(nss);
         nombreRef.child("nombre").setValue(name);
         DatabaseReference clinicaRef = conexion.child("usuarios").child(nss);
         clinicaRef.child("clinica").setValue(clinica);
+
 
     }
     public ArrayList<String> getMedicamentos(Context contexto){
@@ -171,8 +214,29 @@ public class helperFB extends AppCompatActivity{
 
 
     }
-    public void buscarMed(String nombre){
+    public void buscarMedClinica(String nombre,String clinica,TextView vista){
+        DatabaseReference medRef=conexion.child("medicamentos");
+        medRef.child(nombre).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(clinica).exists()){
+                    String codigo=snapshot.child("codigo").getValue(String.class);
+                    String cantidad=snapshot.child(clinica).child("cantidad").getValue(String.class);
 
+                    //PROBAR TENER MAS DE UNA CLINICA
+                    //vista.setText("El medicamento "+nombre+" Existe en la clinica "+clinica+" con "+snapshot.child("cantidad").getValue(String.class));
+                    vista.setText(nombre+codigo+cantidad);
+                }else{
+                    vista.setText("Este medicamento no existe");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                vista.setText("ERROR");
+
+            }
+        });
     }
     public void prueba(){
         DatabaseReference usuariosRef = conexion;
@@ -196,6 +260,46 @@ public class helperFB extends AppCompatActivity{
             }
 
         });
+
+    }
+    public ArrayList<String> getClinicas(){
+        clinicas=new ArrayList<>();
+        DatabaseReference ref=conexion.child("clinicas");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child: snapshot.getChildren()){
+
+                    if(child.getValue(int.class)==0){
+                        continue;
+                    }
+                    clinicas.add(child.getKey());
+                }
+                String[] opciones = new String[clinicas.size()];
+                opciones = clinicas.toArray(opciones);
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(contextoConexion, android.R.layout.simple_spinner_item, opciones);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                listaClinica.setAdapter(adapter);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(contextoConexion, "Error al conectarse: "+error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        return clinicas;
+    }
+    public void cerrarSesion(){
+
+        FirebaseAuth.getInstance().signOut();
+        mAuth.signOut();
 
     }
 }

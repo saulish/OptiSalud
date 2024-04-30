@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.google.firebase.database.DatabaseReference;
@@ -44,8 +45,16 @@ public class menu_activity extends AppCompatActivity {
         startActivity(intent);
     }
     public void ir_medicamentos(View vier){
-        Intent intent = new Intent(menu_activity.this, MedicamentosActivity.class );
+        Intent intent = new Intent(menu_activity.this, buscarMedActivity.class );
         startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        helperFB conexion=new helperFB(this);
+        // Verifica si el usuario ha iniciado sesión
+        if (!conexion.activo()) {
+            super.onBackPressed();
+        }
     }
 
 
