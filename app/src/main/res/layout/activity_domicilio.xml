@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".domicilioActivity"
+    tools:layout_editor_absoluteX="-1dp"
+    tools:layout_editor_absoluteY="-50dp">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vistaMeds">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:textAlignment="center">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/comfortaa"
+                android:gravity="center|top"
+                android:text="Por favor, llene el siguiente formulario,  algunos de los datos solicitados se encuentran  en el recuadro superior derecho de su receta"
+                android:textAlignment="gravity"
+                android:textColor="@color/letrasDatos"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/curpView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:paddingTop="10dp"
+                android:text="CURP"
+                android:textColor="@color/letrasDatos" />
+
+            <TextView
+                android:id="@+id/curpView"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/esquinas"
+                android:fontFamily="@font/roboto"
+                android:gravity="center|left"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:text="SAHS"
+                android:textAlignment="gravity"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:paddingTop="10dp"
+                android:text="NSS"
+                android:textColor="@color/letrasDatos" />
+
+            <TextView
+                android:id="@+id/nssView"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/esquinas"
+                android:fontFamily="@font/roboto"
+                android:gravity="center|left"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:text="255"
+                android:textAlignment="gravity"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:paddingTop="10dp"
+                android:text="UNIDAD MÉDICA"
+                android:textColor="@color/letrasDatos" />
+
+            <TextView
+                android:id="@+id/clinicaView"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/esquinas"
+                android:fontFamily="@font/roboto"
+                android:gravity="center|left"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:text="IMSS"
+                android:textAlignment="gravity"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:paddingTop="10dp"
+                android:text="DIRECCION"
+                android:textColor="@color/letrasDatos" />
+
+            <fragment
+                android:id="@+id/editDireccion"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/esquinas" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:paddingTop="10dp"
+                android:text="CÓDIGO POSTAL"
+                android:textColor="@color/letrasDatos" />
+
+            <EditText
+                android:id="@+id/codigoPostalText"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/esquinas"
+                android:fontFamily="@font/roboto"
+                android:hint="Codigo postal"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:paddingTop="10dp"
+                android:text="MUNICIPIO O LOCALIDAD"
+                android:textColor="@color/letrasDatos" />
+
+            <EditText
+                android:id="@+id/coloniaText"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+
+                android:layout_gravity="center"
+                android:background="@drawable/esquinas"
+                android:fontFamily="@font/roboto"
+                android:hint="Municipio o colonia"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+            <EditText
+                android:id="@+id/textDIreccion"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:hint="Calle y numero"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:paddingTop="10dp"
+                android:text="TELEFONO"
+                android:textColor="@color/letrasDatos" />
+
+            <EditText
+                android:id="@+id/textTelefono"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/esquinas"
+                android:fontFamily="@font/roboto"
+                android:hint="Telefono"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:paddingTop="10dp"
+                android:text="PUNTOS DE REFERENCIA"
+                android:textColor="@color/letrasDatos" />
+
+            <EditText
+                android:id="@+id/textReferencia"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/esquinas"
+                android:fontFamily="@font/roboto"
+                android:gravity="start"
+                android:hint="Ingresa una referencia"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:textAlignment="gravity"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/principal"
+                android:fontFamily="@font/comfortaa"
+                android:onClick="revisarFomrulario"
+                android:text="Enviar formulario"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:cornerRadius="10dp"
+                app:iconPadding="10dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/vistaTextMeds"
+
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/blanco"
+        android:backgroundTint="@color/blanco"
+        android:fontFamily="@font/comfortaa"
+        android:padding="5dp"
+        android:text="Lista vacia"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/comfortaa"
+        android:gravity="bottom|left"
+        android:padding="10dp"
+        android:text="Entrega a domicilio"
+        android:textAlignment="gravity"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ListView
+        android:id="@+id/vistaMeds"
+
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

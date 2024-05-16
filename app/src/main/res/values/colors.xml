@@ -9,4 +9,5 @@
     <color name="transparente">#807D7D</color>
     <color name="datosFondo">#D0D3D9</color>
     <color name="letrasDatos">#50555C</color>
+    <color name="fondoEdit">#EAEDF3</color>
 </resources>

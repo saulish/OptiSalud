@@ -1,11 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <!--<style name="Base.Theme.OptiSalud" parent="Theme.Material3.DayNight.NoActionBar">-->
-    <style name="Base.Theme.OptiSalud" parent="Theme.Material3.DayNight.NoActionBar">
 
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Define tus colores personalizados -->
+    <color name="blanco">#FFFFFF</color>
+
+    <!-- Define tu tema base -->
+    <style name="Base.Theme.OptiSalud" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colores primarios -->
+        <item name="colorPrimary">@color/principal</item>
+        <item name="colorPrimaryVariant">@color/principal</item>
+
+        <!-- Colores de fondo -->
+        <item name="android:windowBackground">@color/principal</item>
+        <item name="android:colorBackground">@color/principal</item>
+
+        <!-- Otros colores -->
+        <!-- Ajusta cualquier otro color según sea necesario -->
     </style>
 
+    <!-- Aplica tu tema base -->
     <style name="Theme.OptiSalud" parent="Base.Theme.OptiSalud" />
+
 </resources>

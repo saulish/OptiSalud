@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         inicio=findViewById(R.id.boton_inicio_main);
         registro=findViewById(R.id.boton_registro);
-        Datos.eliminarDatos();
+        //Datos.eliminarDatos();
     }
 
     public void crear_cuenta (View view){

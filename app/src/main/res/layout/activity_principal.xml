@@ -29,7 +29,8 @@
                 android:id="@+id/columna1"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:onClick="ir_Escaner">
 
                 <TableRow
                     android:id="@+id/logo1"
@@ -89,7 +90,8 @@
                 android:id="@+id/primer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:onClick="ir_Escaner">
 
                 <TableRow
                     android:id="@+id/texto_escanear"
@@ -162,7 +164,8 @@
                 android:id="@+id/columna3"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
-                android:gravity="bottom|center">
+                android:gravity="bottom|center"
+                android:onClick="ir_domicilio">
 
                 <TableRow
                     android:id="@+id/logo3"
@@ -183,7 +186,8 @@
                 android:id="@+id/columna4"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
-                android:gravity="bottom|center">
+                android:gravity="bottom|center"
+                android:onClick="ir_Dudas">
 
                 <TableRow
                     android:id="@+id/logo4"
@@ -211,7 +215,8 @@
                 android:id="@+id/tercero"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:onClick="ir_domicilio">
 
                 <TableRow
                     android:id="@+id/texto_entrega"
@@ -234,7 +239,8 @@
                 android:id="@+id/cuarto"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:onClick="ir_Dudas">
 
                 <TableRow
                     android:id="@+id/texto_solicitar"

@@ -48,6 +48,18 @@ public class menu_activity extends AppCompatActivity {
         Intent intent = new Intent(menu_activity.this, buscarMedActivity.class );
         startActivity(intent);
     }
+    public void ir_domicilio(View vier){
+        Intent intent = new Intent(menu_activity.this, domicilioActivity.class );
+        startActivity(intent);
+    }
+    public void ir_Escaner(View view){
+        Toast.makeText(this,"Esta funcion será añadida pronto",Toast.LENGTH_SHORT).show();
+        return;
+    }
+    public void ir_Dudas(View view){
+        Intent intent=new Intent(this, ActivityDudas.class);
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed() {
         helperFB conexion=new helperFB(this);

@@ -4,6 +4,7 @@ package com.example.optisalud;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +24,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class helperFB extends AppCompatActivity{
     private DatabaseReference conexion;
     private Spinner listaClinica;
+    private AutoCompleteTextView listaMedCodigos;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private boolean activo;
 
@@ -37,7 +41,6 @@ public class helperFB extends AppCompatActivity{
     static private ArrayList<String> meds;
     static private ArrayList<String> clinicas;
 
-    private Intent accion;
 
 
 
@@ -55,20 +58,15 @@ public class helperFB extends AppCompatActivity{
         nombreConsultado="";
         listaClinica=spinnerClinica;
     }
-    public  helperFB(Context context,Intent intent){
+
+    public  helperFB(Context context,AutoCompleteTextView entrada){
         FirebaseApp.initializeApp(context);
         contextoConexion=context;
         conexion=  FirebaseDatabase.getInstance().getReference();
         nombreConsultado="";
-        accion=intent;
+        listaMedCodigos=entrada;
     }
-    public void eliminarConexion(){
-        //meds.clear();
-        meds=null;
-        //clinicas.clear();
-        clinicas=null;
 
-    }
     private boolean medExiste(){
         return (meds!=null);
     }
@@ -214,7 +212,7 @@ public class helperFB extends AppCompatActivity{
 
 
     }
-    public void buscarMedClinica(String nombre,String clinica,TextView vista){
+    private void buscarMedClinica(String nombre, String clinica, TextView vistaTexto, TextView vistaCodigo, TextView vistaCantidad){
         DatabaseReference medRef=conexion.child("medicamentos");
         medRef.child(nombre).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -225,15 +223,19 @@ public class helperFB extends AppCompatActivity{
 
                     //PROBAR TENER MAS DE UNA CLINICA
                     //vista.setText("El medicamento "+nombre+" Existe en la clinica "+clinica+" con "+snapshot.child("cantidad").getValue(String.class));
-                    vista.setText(nombre+codigo+cantidad);
+                    vistaTexto.setText(nombre);
+                    vistaCodigo.setText(codigo);
+                    vistaCantidad.setText(cantidad);
                 }else{
-                    vista.setText("Este medicamento no existe");
+                    vistaTexto.setText("Este medicamento no existe");
+                    vistaCantidad.setText("0");
+                    vistaCodigo.setText("-");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                vista.setText("ERROR");
+                vistaTexto.setText("Error "+error.getMessage());
 
             }
         });
@@ -302,4 +304,61 @@ public class helperFB extends AppCompatActivity{
         mAuth.signOut();
 
     }
+    public void getMedicamentosCodigos(){
+        ArrayList<String> datos=new ArrayList<String>();
+        DatabaseReference ref=conexion.child("medicamentos");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String clinica=Datos.getInstance().getClinica();
+                for(DataSnapshot child: snapshot.getChildren()){
+                    if(!child.child(clinica).exists()){
+                        continue;
+                    }
+                    datos.add(child.getKey());
+                    datos.add(child.child("codigo").getValue(String.class));
+                }
+                String[] opciones = new String[datos.size()];
+                opciones = datos.toArray(opciones);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(contextoConexion, android.R.layout.simple_dropdown_item_1line, opciones);
+                listaMedCodigos.setAdapter(adapter);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(contextoConexion, "Error al conectarse", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+    public void verificarCodigo (String nombre, String clinica, TextView vistaTexto, TextView vistaCodigo, TextView vistaCantidad){
+
+
+        DatabaseReference usuariosRef = conexion.child("codigoMeds").child(nombre.toUpperCase());
+        usuariosRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    String nuevoNombre=dataSnapshot.getValue(String.class);
+                    buscarMedClinica(nuevoNombre,clinica,vistaTexto,vistaCodigo,vistaCantidad);
+                }else{
+                    buscarMedClinica(nombre,clinica,vistaTexto,vistaCodigo,vistaCantidad);
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Manejar errores, si es necesario
+            }
+
+        });
+
+
+
+
+    }
+
 }

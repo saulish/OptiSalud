@@ -4,55 +4,196 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="5dp"
+    android:textAlignment="center"
     tools:context=".buscarMedActivity">
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="164dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
         android:fontFamily="@font/comfortaa"
-        android:text="Consulta de medicamentos"
+        android:gravity="center|left"
+        android:text="  Consulta de medicamentos"
+        android:textAlignment="gravity"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.279"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintVertical_bias="0.024" />
 
-    <EditText
-        android:id="@+id/medBuscar"
-        android:layout_width="301dp"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="Ingresa el nombre o codigo"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248" />
+
 
     <TextView
         android:id="@+id/nombreObtenido"
-        android:layout_width="196dp"
-        android:layout_height="60dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/borde_claro"
+        android:fontFamily="@font/comfortaa"
+        android:padding="10dp"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.421" />
 
     <Button
         android:id="@+id/buscarBoton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/principal"
+        android:fontFamily="@font/comfortaa"
         android:onClick="buscarMed"
-        android:text="Button"
+        android:text="Realizar otra búsqueda "
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:cornerRadius="10dp"
+        app:iconPadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        app:layout_constraintVertical_bias="0.929" />
+
+    <TextView
+        android:id="@+id/codigoObtenido"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/borde_claro"
+        android:fontFamily="@font/comfortaa"
+        android:padding="10dp"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreObtenido"
+        app:layout_constraintVertical_bias="0.177" />
+
+    <TextView
+        android:id="@+id/cantidadObtenida"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/borde_claro"
+        android:fontFamily="@font/comfortaa"
+        android:padding="10dp"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codigoObtenido"
+        app:layout_constraintVertical_bias="0.309" />
+
+
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa"
+        android:text="Nombre del medicamento"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.345" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa"
+        android:text="Código"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.514" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa"
+        android:text="Cantidad en "
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.679" />
+
+    <AutoCompleteTextView
+        android:id="@+id/medBuscar"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:background="@drawable/edit_redondo"
+        android:popupBackground="@color/white"
+        android:backgroundTint="@color/fondoEdit"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Buscar"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.18" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/medBuscar"
+        app:layout_constraintEnd_toEndOf="@+id/medBuscar"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="@+id/medBuscar"
+        app:layout_constraintTop_toTopOf="@+id/medBuscar"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/lupa"  />
+
+    <Button
+        android:id="@+id/botonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addMed"
+        android:text="Añadir"
+        app:layout_constraintBottom_toTopOf="@+id/nombreObtenido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medBuscar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/botonEliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="quitarMed"
+        android:text="Eliminar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/botonAdd" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
