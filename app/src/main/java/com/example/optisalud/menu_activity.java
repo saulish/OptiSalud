@@ -21,8 +21,6 @@ public class menu_activity extends AppCompatActivity {
     protected void onCreate(Bundle estadoInstancia){
         super.onCreate(estadoInstancia);
         setContentView(R.layout.activity_principal);
-
-
         conf=findViewById(R.id.conf_logo);
 
 

@@ -12,34 +12,70 @@
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:fontFamily="@font/comfortaa"
-        android:gravity="center|left"
+        android:gravity="bottom|left"
         android:padding="10dp"
         android:paddingStart="20dp"
         android:text="Dudas Frecuentes"
         android:textAlignment="gravity"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/showMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="340dp"
-        android:text="Mostrar Menú"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
     <ExpandableListView
         android:id="@+id/expandableListView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView23" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="¿Aún tienes dudas? Contactanos "
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expandableListView" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:fontFamily="@font/comfortaa"
+        android:text="Llamada"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:cornerRadius="10dp"
+        app:iconPadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24"
+        app:layout_constraintVertical_bias="0.282" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.664"
+        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintVertical_bias="0.571"
+        app:srcCompat="@drawable/png_telefono" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
