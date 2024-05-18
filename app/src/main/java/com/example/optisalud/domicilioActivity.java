@@ -17,6 +17,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
@@ -179,6 +180,9 @@ public class domicilioActivity extends AppCompatActivity {
         long tel=Long.parseLong(telefonoVista.getText().toString());
         Solicitud sol=new Solicitud(name,clinica,calle,mun,ref,tel,codP,numS);
         Datos.getInstance().setSolMed(sol);
+        Toast.makeText(this,"Solicitud guardada con exito",Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this,menu_activity.class);
+        startActivity(intent);
 
 
     }
